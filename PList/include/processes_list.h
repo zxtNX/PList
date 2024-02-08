@@ -2,7 +2,8 @@
 #define PROCESS_LIST_H
 #include <bemapiset.h>
 
-void ListProcesses(const int showMemoryUsage);
+void ListProcesses();
 void ListDetailedProcessInfo(DWORD pid);
+void ListProcessesMemory();
 
 #endif // PROCESS_LIST_H
