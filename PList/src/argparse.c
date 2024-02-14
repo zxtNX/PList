@@ -9,11 +9,12 @@ void print_usage() {
     printf(" PSList.exe [options]\n");
     printf("Options :\n");
     printf("  -h, --help\t\tAfficher l'aide\n");
-    printf("  -v, --verbose\t\tActiver le mode verbeux\n");
+    printf("  -v, --verbose\t\tActiver le mode verbeux (pas encore fonctionnel)\n");
+    printf("  -m, --memory\t\tAffiche l'utilisation mémoire\n");
 }
 
 Args parse_args(const int argc, char *argv[]) {
-    const Args args = {0, NULL, NULL}; // Valeurs par défaut
+    const Args args = {0};
 
     if (argc == 1) {
         ListProcesses();
