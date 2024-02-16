@@ -25,6 +25,8 @@ Il vous sera nécessaire de vérifier que chacun de ces outils sont installés s
 - [cmake](https://cmake.org/download/)
 - [ninja](https://github.com/ninja-build/ninja/releases)
 
+#### Releases
+Vous pouvez également vous rendre sur notre repository où vous pourrez directement télécharger l'exécutable [ici](https://github.com/zxtNX/PList/releases/tag/v0.1.0).
 ### Etapes pour construire le projet et accéder à l'exécutable
 #### Construction du projet
 ```bash
