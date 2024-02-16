@@ -7,7 +7,11 @@ set(CMAKE_C_STANDARD 23)
 include_directories(include)
 
 # Source files
-file(GLOB SOURCES "src/*.c")
+file(GLOB MAIN_SOURCE "src/main.c")
+file(GLOB MODULES_SOURCE "src/modules/*.c")
+file(GLOB UTILS_SOURCE "src/utils/*.c")
 
 # Specify the executable
-add_executable(PList ${SOURCES})
+add_executable(PList ${MAIN_SOURCE} ${MODULES_SOURCE} ${UTILS_SOURCE})
+
+target_link_libraries(PList PRIVATE kernel32.lib ntdll.lib user32.lib Advapi32.lib)
