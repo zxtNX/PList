@@ -2,17 +2,12 @@
 title: "PList"
 description: "Outil répliquant le comportement de pslist de sysinternals (windows)"
 date: 2024-02-11T16:38:40.725Z
-preview: null
-draft: true
 tags:
   - Programming
   - C
   - CMAKE
   - WINAPI
   - FORENSICS
-categories: []
-type: post
-showTableOfContents : true
 ---
 
 # PList
