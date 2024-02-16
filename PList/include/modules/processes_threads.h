@@ -2,16 +2,13 @@
 #define PROCESSES_THREADS_H_
 #include <winternl.h>
 #include <winbase.h>
-#include <tlhelp32.h> // TH32CS_SNAPPROCESS
-
+#include <tlhelp32.h>
 
 typedef struct _SYSTEM_THREAD_INFORMATION_ARRAY {
 	SYSTEM_THREAD_INFORMATION* array;
 	ULONG arrayLength;
 } SYSTEM_THREAD_INFORMATION_ARRAY ;
 
-
-// Source : https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-thread
 enum THREAD_STATE_NUM
 {
 	_Other = 1,
@@ -21,7 +18,6 @@ enum THREAD_STATE_NUM
 	_Waiting = 5
 };
 
-// Source : https://www.nirsoft.net/kernel_struct/vista/KWAIT_REASON.html
 enum WAIT_REASON_NUM
 {
     _Executive = 0,
