@@ -42,6 +42,8 @@ PList.exe [options]
 ```
 Le programme actuel ne comporte que l'argument ``-h``, ``-d`` et ``-m``.
 
+**Si vous souhaitez accéder au maximum d'informations, il vous faudra exécuter l'utilitaire via Powershell en administrateur.**
+
 ## Ressources Windows Development utilisées
 ### Fondamentaux des Types de Données et APIs Windows
 - [Types de données Windows](https://learn.microsoft.com/fr-fr/windows/win32/winprog/windows-data-types)
