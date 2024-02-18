@@ -20,60 +20,107 @@
 
 char* get_thr_state_str(LONG threadState) {
 	switch (threadState) {
-		case -1 : return "N/A";
-		case _Other : return "Other";
-		case _Running : return "Running";
-		case _Ready : return "Standby";
-		case _Blocked : return "Blocked";
-		case _Waiting : return "Wait";
+		case -1 :
+			return "N/A";
+		case _Other :
+			return "Other";
+		case _Running :
+			return "Running";
+		case _Ready :
+			return "Standby";
+		case _Blocked :
+			return "Blocked";
+		case _Waiting :
+			return "Wait";
 
-		default : return "Unknown";
+		default :
+			return "Unknown";
 	}
 }
 
 char* get_thr_wait_reason_str(LONG waitReason) {
 	switch (waitReason) {
-		case -1 : return "N/A";
-		case _Executive : return "Executive";
-		case _FreePage : return "FreePage";
-		case _PageIn : return "PageIn";
-		case _PoolAllocation : return "PoolAllocation";
-		case _DelayExecution : return "DelayExecution";
-		case _Suspended : return "Suspended";
-		case _UserRequest : return "UserReq";
-		case _WrExecutive : return "Executive";
-		case _WrFreePage : return "FreePage";
-		case _WrPageIn : return "PageIn";
-		case _WrPoolAllocation : return "PoolAllocation";
-		case _WrDelayExecution : return "DelayExecution";
-		case _WrSuspended : return "Suspended";
-		case _WrUserRequest : return "UserReq";
-		case _WrEventPair : return "EventPair";
-		case _WrQueue : return "Queue";
-		case _WrLpcReceive : return "LpcReceive";
-		case _WrLpcReply : return "LpcReply";
-		case _WrVirtualMemory : return "VirtualMemory";
-		case _WrPageOut : return "PageOut";
-		case _WrRendezvous : return "Rendezvous";
-		case _Spare2 : return "Spare2";
-		case _Spare3 : return "Spare3";
-		case _Spare4 : return "Spare4";
-		case _Spare5 : return "Spare5";
-		case _WrCalloutStack : return "CalloutStack";
-		case _WrKernel : return "Kernel";
-		case _WrResource : return "Resource";
-		case _WrPushLock : return "PushLock";
-		case _WrMutex : return "Mutex";
-		case _WrQuantumEnd : return "QuantumEnd";
-		case _WrDispatchInt : return "DispatchInt";
-		case _WrPreempted : return "Preempted";
-		case _WrYieldExecution : return "YieldExecution";
-		case _WrFastMutex : return "FastMutex";
-		case _WrGuardedMutex : return "GuardedMutex";
-		case _WrRundown : return "Rundown";
-		case _MaximumWaitReason : return "MaximumWaitReason";
+		case -1 :
+			return "N/A";
+		case _Executive :
+			return "Executive";
+		case _FreePage :
+			return "FreePage";
+		case _PageIn :
+			return "PageIn";
+		case _PoolAllocation :
+			return "PoolAllocation";
+		case _DelayExecution :
+			return "DelayExecution";
+		case _Suspended :
+			return "Suspended";
+		case _UserRequest :
+			return "UserReq";
+		case _WrExecutive :
+			return "Executive";
+		case _WrFreePage :
+			return "FreePage";
+		case _WrPageIn :
+			return "PageIn";
+		case _WrPoolAllocation :
+			return "PoolAllocation";
+		case _WrDelayExecution :
+			return "DelayExecution";
+		case _WrSuspended :
+			return "Suspended";
+		case _WrUserRequest :
+			return "UserReq";
+		case _WrEventPair :
+			return "EventPair";
+		case _WrQueue :
+			return "Queue";
+		case _WrLpcReceive :
+			return "LpcReceive";
+		case _WrLpcReply :
+			return "LpcReply";
+		case _WrVirtualMemory :
+			return "VirtualMemory";
+		case _WrPageOut :
+			return "PageOut";
+		case _WrRendezvous :
+			return "Rendezvous";
+		case _Spare2 :
+			return "Spare2";
+		case _Spare3 :
+			return "Spare3";
+		case _Spare4 :
+			return "Spare4";
+		case _Spare5 :
+			return "Spare5";
+		case _WrCalloutStack :
+			return "CalloutStack";
+		case _WrKernel :
+			return "Kernel";
+		case _WrResource :
+			return "Resource";
+		case _WrPushLock :
+			return "PushLock";
+		case _WrMutex :
+			return "Mutex";
+		case _WrQuantumEnd :
+			return "QuantumEnd";
+		case _WrDispatchInt :
+			return "DispatchInt";
+		case _WrPreempted :
+			return "Preempted";
+		case _WrYieldExecution :
+			return "YieldExecution";
+		case _WrFastMutex :
+			return "FastMutex";
+		case _WrGuardedMutex :
+			return "GuardedMutex";
+		case _WrRundown :
+			return "Rundown";
+		case _MaximumWaitReason :
+			return "MaximumWaitReason";
 
-		default : return "Unknown";
+		default :
+			return "Unknown";
 	}
 }
 
@@ -120,8 +167,7 @@ SYSTEM_THREAD_INFORMATION_ARRAY* get_thrInfo_querySystemResults_by_pId(BYTE* ptr
 			}
 			SYSTEM_THREAD_INFORMATION_ARRAY* ptrResultStruct = malloc(sizeof(SYSTEM_THREAD_INFORMATION_ARRAY));
 			if (!ptrResultStruct) {
-				fprintf(stderr, "Erreur lors de l'allocation mémoire pour obtenir les changements de contexte et l'état des threads, "
-						"le tableau sera affiché sans ces informations.\n");
+				fprintf(stderr, "Erreur lors de l'allocation mémoire pour obtenir les changements de contexte et l'état des threads.\n");
 				return NULL;
 			}
 
@@ -175,8 +221,6 @@ SYSTEMTIME* get_thr_times(HANDLE thrHandle) {
 	FILETIME threadKernelTime;
 	FILETIME threadUserTime;
 
-	// BOOL GetThreadTimes([in] HANDLE hThread, [out] LPFILETIME lpCreationTime, [out] LPFILETIME lpExitTime,
-	// [out] LPFILETIME lpKernelTime, [out] LPFILETIME lpUserTime );
 	BOOL getThreadTimesResult = GetThreadTimes(thrHandle, &threadCreationTime, &threadExitTime,
 			&threadKernelTime, &threadUserTime);
 	if (!getThreadTimesResult)
@@ -186,12 +230,11 @@ SYSTEMTIME* get_thr_times(HANDLE thrHandle) {
 
 	SYSTEMTIME* threadTimes = (SYSTEMTIME*) malloc(sizeof(SYSTEMTIME) *3);
 	if (threadTimes == NULL) {
-		fprintf(stderr, "Une erreur s'est produite lors d'une tentative "
-				"d'allocation dynamique de mémoire.");
+		fprintf(stderr, "Une erreur s'est produite lors d'une tentative d'allocation dynamique de mémoire.");
 		exit(EXIT_FAILURE);
 	}
 
-	// FileTimeToSystemTime() : Pour convertir une structure FILETIME en une heure facile à afficher pour un utilisateur.
+	// Conversion d'une structure FILETIME en une heure facile à afficher pour un utilisateur.
 	BOOL threadUserTimeConverted = FileTimeToSystemTime(&threadUserTime, &threadTimes[0]);
 	BOOL threadKernelTimeConverted = FileTimeToSystemTime(&threadKernelTime, &threadTimes[1]);
 	BOOL threadElapsedTimeConverted = FileTimeToSystemTime(threadElapsedTime, &threadTimes[2]);

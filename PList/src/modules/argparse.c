@@ -12,7 +12,7 @@
 
 void show_help() {
     printf(" PList.exe [options]\n");
-    printf("Le comportement par défaut, donc sans option, permet de lister tous les processus en cours d'exécution\n");
+    printf("Le comportement de base, donc sans option, permet de lister tous les processus en cours\n");
     printf("Options :\n");
     printf("  -h, --help\t\tAfficher l'aide\n");
     printf("  -v, --verbose\t\tActiver le mode verbeux (pas encore fonctionnel)\n");
@@ -43,7 +43,7 @@ Args parse_args(const int argc, const char *argv[]) {
                 i++;
                 continue;
             } else {
-                fprintf(stderr, "Erreur : L'option -d nécessite un PID.\n");
+                fprintf(stderr, "Erreur : L'option -d a beosin d'un PID.\n");
                 show_help();
                 exit(EXIT_FAILURE);
             }

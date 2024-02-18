@@ -7,6 +7,41 @@
 
 #define TIME_STR_FORMAT "  %01d:%02d:%02d:%03d  "
 
+void set_SeDebugPrivilege() {
+	LUID privilegeLocallyUniqueIdentifier;
+
+	if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &privilegeLocallyUniqueIdentifier)) {
+		catch_function_error("LookupPrivilegeValue()");
+	}
+
+	HANDLE currentProcessHandle = GetCurrentProcess();
+
+	HANDLE currentProcessAccessTokenHandle;
+	if (!OpenProcessToken(currentProcessHandle, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY,
+			&currentProcessAccessTokenHandle)) {
+		catch_function_error("OpenProcessToken()");
+			}
+
+	TOKEN_PRIVILEGES accessTokenNewPrivileges;
+	accessTokenNewPrivileges.PrivilegeCount = 1;
+	accessTokenNewPrivileges.Privileges[0].Luid = privilegeLocallyUniqueIdentifier;
+	accessTokenNewPrivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+	if (!AdjustTokenPrivileges(
+			currentProcessAccessTokenHandle,
+			FALSE,
+			&accessTokenNewPrivileges,
+			sizeof(TOKEN_PRIVILEGES),
+			NULL, NULL) || GetLastError() == ERROR_NOT_ALL_ASSIGNED
+			) {
+		fprintf(
+			stderr,
+			"Les infos système ne sont pas toutes disponibles car la console n'est pas en mode administrateur.\n");
+			}
+
+	CloseHandle(currentProcessAccessTokenHandle);
+}
+
 void close_handle(HANDLE handle) {
 	if (handle == NULL) {
 		fprintf(stderr, "Erreur : Tentative de fermeture d'un handle NULL.\n");
@@ -168,41 +203,6 @@ FILETIME* get_elapsed_time(FILETIME* time) {
 	elapsedTime->dwHighDateTime = elapsedTime64bits.HighPart;
 
 	return elapsedTime;
-}
-
-void set_SeDebugPrivilege() {
-	LUID privilegeLocallyUniqueIdentifier;
-
-	if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &privilegeLocallyUniqueIdentifier)) {
-		catch_function_error("LookupPrivilegeValue()");
-	}
-
-	HANDLE currentProcessHandle = GetCurrentProcess();
-
-	HANDLE currentProcessAccessTokenHandle;
-	if (!OpenProcessToken(currentProcessHandle, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY,
-			&currentProcessAccessTokenHandle)) {
-		catch_function_error("OpenProcessToken()");
-			}
-
-	TOKEN_PRIVILEGES accessTokenNewPrivileges;
-	accessTokenNewPrivileges.PrivilegeCount = 1;
-	accessTokenNewPrivileges.Privileges[0].Luid = privilegeLocallyUniqueIdentifier;
-	accessTokenNewPrivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-	if (!AdjustTokenPrivileges(
-			currentProcessAccessTokenHandle,
-			FALSE,
-			&accessTokenNewPrivileges,
-			sizeof(TOKEN_PRIVILEGES),
-			NULL, NULL) || GetLastError() == ERROR_NOT_ALL_ASSIGNED
-			) {
-				fprintf(
-					stderr,
-					"Les infos système ne sont pas toutes disponibles car la console n'est pas en mode administrateur.\n");
-			}
-
-	CloseHandle(currentProcessAccessTokenHandle);
 }
 
 void print_line_of_dashes(const int numHeaders, const int headerWidth) {
