@@ -11,8 +11,7 @@ tags:
 ---
 
 # PList
-Projet en C utilisant WINAPI afin de lister les processus en cours d'exécution sur un poste. 
-Réalisé dans le cadre d'une main quest en binôme à l'Ecole 2600.
+Projet en C utilisant WINAPI afin de lister les processus en cours d'exécution sur un poste.
 
 #### Auteurs
 - Victor RENAULT
